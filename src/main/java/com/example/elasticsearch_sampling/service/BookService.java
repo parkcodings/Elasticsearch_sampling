@@ -47,7 +47,7 @@ public class BookService {
     // 검색
     @Transactional(readOnly = true)
     public List<BookResponse> search(String keyword) {
-        return bookSearchRepository.findByTitleContainingOrAuthorContaining(keyword, keyword)
+        return bookSearchRepository.searchByKeyword(keyword)
                 .stream()
                 .map(document -> new BookResponse(
                         Long.valueOf(document.getId()),
